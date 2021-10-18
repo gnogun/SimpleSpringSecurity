@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.gnogun.sample.config.CustomAuthenticationToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -23,12 +24,12 @@ public class AuthService {
 	@Autowired
 	private AuthenticationManager authenticationManager;
 
-	@Autowired
-	private RememberMeServices customSecurityRememberMeService;
+//	@Autowired
+//	private RememberMeServices customSecurityRememberMeService;
 
 	public Authentication customLogin(String id, String pwd, AuthEnum common, HttpServletRequest request,
 			HttpServletResponse response) throws BadCredentialsException, UsernameNotFoundException {
-		UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(id, pwd);
+		CustomAuthenticationToken token = new CustomAuthenticationToken(id, pwd);
 
 		Authentication authentication = authenticationManager.authenticate(token);
 
@@ -39,7 +40,7 @@ public class AuthService {
 			session.setAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY,
 					SecurityContextHolder.getContext());
 
-			customSecurityRememberMeService.loginSuccess(request, response, authentication);
+//			customSecurityRememberMeService.loginSuccess(request, response, authentication);
 
 			return authentication;
 
