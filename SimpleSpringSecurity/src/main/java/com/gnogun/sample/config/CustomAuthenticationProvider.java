@@ -12,6 +12,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 
+//spring security를 사용할때 사용함.
+//jwt는 jwt filter내에서 사용.
+@Deprecated
 public class CustomAuthenticationProvider implements AuthenticationProvider {
     private final CustomSecurityService userDetailsService;
     private final PasswordEncoder customPasswordEncoder;
@@ -40,6 +43,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
         return new CustomAuthenticationToken(username, password, user.getAuthorities());
     }
 
+    // Auth check class를 필히 변경된 class로 변경해야함.
     @Override
     public boolean supports(Class<?> authentication) {
         return CustomAuthenticationToken.class.isAssignableFrom(authentication);

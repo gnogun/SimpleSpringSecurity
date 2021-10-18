@@ -13,6 +13,7 @@ public class AdminController {
 
 	@GetMapping("/")
 	public String main(HttpSession session, Authentication auth) {
+		System.out.println(auth.getPrincipal());
 		return "admin";
 	}
 }

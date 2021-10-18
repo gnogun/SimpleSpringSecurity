@@ -4,6 +4,8 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.web.authentication.RememberMeServices;
 import org.springframework.security.web.authentication.rememberme.RememberMeAuthenticationFilter;
 
+//jwt로 인해 사용안함.
+@Deprecated
 public class CustomRememberMeFilter extends RememberMeAuthenticationFilter {
 
 	public CustomRememberMeFilter(AuthenticationManager authenticationManager, RememberMeServices rememberMeServices) {

@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 
+//jwt로 인해 사용안함.
+@Deprecated
 public class CustomLogoutSuccessHandler implements LogoutSuccessHandler {
 
 	@Override

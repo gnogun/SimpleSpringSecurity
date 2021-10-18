@@ -32,8 +32,6 @@ import com.gnogun.sample.service.AuthService;
 @Controller
 public class AuthController {
 
-	@Autowired
-	private AuthService service;
 
 	@Autowired
 	private JwtAuthService authService;
@@ -46,21 +44,22 @@ public class AuthController {
 	@Autowired
 	private RedisUtil redisUtil;
 
-	@RequestMapping(value = "/admin/login/id/{id}/pwd/{pwd}/", method = RequestMethod.GET)
-	public @ResponseBody ResponseEntity<Authentication> adminLogin(@PathVariable String id, @PathVariable String pwd,
-			HttpServletRequest request, HttpServletResponse response) {
+//	@RequestMapping(value = "/admin/login/id/{id}/pwd/{pwd}/", method = RequestMethod.GET)
+//	public @ResponseBody ResponseEntity<Authentication> adminLogin(@PathVariable String id, @PathVariable String pwd,
+//			HttpServletRequest request, HttpServletResponse response) {
+//
+//		try {
+//			return new ResponseEntity<Authentication>(
+//					service.customLogin(id, pwd, AuthEnum.ROLE_ADMIN, request, response), HttpStatus.OK);
+//		} catch (BadCredentialsException e) {
+//			throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
+//					"Bad credentials. Please check username, password");
+//		} catch (IllegalArgumentException e) {
+//			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+//		}
+//	}
 
-		try {
-			return new ResponseEntity<Authentication>(
-					service.customLogin(id, pwd, AuthEnum.ROLE_ADMIN, request, response), HttpStatus.OK);
-		} catch (BadCredentialsException e) {
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
-					"Bad credentials. Please check username, password");
-		} catch (IllegalArgumentException e) {
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
-		}
-	}
-
+	//jwt login
 	@PostMapping("/admin/login")
 	public @ResponseBody ResponseEntity<Response> login(@RequestBody RequestLoginUser user,
 						  HttpServletRequest req,
@@ -80,22 +79,22 @@ public class AuthController {
 		}
 	}
 
-	@RequestMapping(value = "/users/login/id/{id}/pwd/{pwd}/", method = RequestMethod.GET)
-	public @ResponseBody ResponseEntity<Authentication> usersLogin(@PathVariable String id, @PathVariable String pwd,
-			HttpServletRequest request, HttpServletResponse response) {
-
-		try {
-			return new ResponseEntity<Authentication>(
-					service.customLogin(id, pwd, AuthEnum.ROLE_USER, request, response), HttpStatus.OK);
-		} catch (BadCredentialsException e) {
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
-					"Bad credentials. Please check username, password");
-		} catch (IllegalArgumentException e) {
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
-		} catch (UsernameNotFoundException e) {
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
-					"Bad credentials. Please check username, password");
-		}
-	}
+//	@RequestMapping(value = "/users/login/id/{id}/pwd/{pwd}/", method = RequestMethod.GET)
+//	public @ResponseBody ResponseEntity<Authentication> usersLogin(@PathVariable String id, @PathVariable String pwd,
+//			HttpServletRequest request, HttpServletResponse response) {
+//
+//		try {
+//			return new ResponseEntity<Authentication>(
+//					service.customLogin(id, pwd, AuthEnum.ROLE_USER, request, response), HttpStatus.OK);
+//		} catch (BadCredentialsException e) {
+//			throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
+//					"Bad credentials. Please check username, password");
+//		} catch (IllegalArgumentException e) {
+//			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+//		} catch (UsernameNotFoundException e) {
+//			throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
+//					"Bad credentials. Please check username, password");
+//		}
+//	}
 
 }

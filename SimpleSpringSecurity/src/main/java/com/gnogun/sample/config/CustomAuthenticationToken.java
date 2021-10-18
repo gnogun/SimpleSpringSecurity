@@ -6,6 +6,8 @@ import org.springframework.security.core.GrantedAuthority;
 import java.util.Collection;
 import java.util.Collections;
 
+//jwt사용으로 인해 deprecated
+@Deprecated
 public class CustomAuthenticationToken extends AbstractAuthenticationToken {
     private String id;
     private String credentials;

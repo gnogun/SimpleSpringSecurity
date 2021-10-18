@@ -59,7 +59,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.cors()
 				.and()
 				.csrf().disable()
-				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS) // JWT인증사용하므로 세션 생성 안함
 				.and()
 				.httpBasic()
 				.authenticationEntryPoint(customAuthenticationEntryPoint)
@@ -69,8 +69,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.authorizeRequests()
 				.antMatchers("/users/**").hasAnyRole("USER")
 				.antMatchers("/admin/**").hasAnyRole("ADMIN")
-//				.antMatchers("/pre/**").hasAnyRole("ADMIN")
 				.antMatchers("/**").permitAll();
+		//spring security filter가 아닌 jwt filter로 재정의
 		http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 	}
 
@@ -79,15 +79,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		web.ignoring().antMatchers("/users/login/**").antMatchers("/admin/login/**");
 	}
 
-	@Bean
-	public PasswordEncoder customPasswordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
+//	@Bean
+//	public PasswordEncoder customPasswordEncoder() {
+//		return new BCryptPasswordEncoder();
+//	}
 
-	@Bean
-	public LogoutSuccessHandler logoutSuccessHandler() {
-		return new CustomLogoutSuccessHandler();
-	}
+//	@Bean
+//	public LogoutSuccessHandler logoutSuccessHandler() {
+//		return new CustomLogoutSuccessHandler();
+//	}
 
 //	@Override
 //	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
