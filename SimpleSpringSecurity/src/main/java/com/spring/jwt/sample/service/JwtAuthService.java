@@ -1,18 +1,25 @@
 package com.spring.jwt.sample.service;
 
 import com.spring.jwt.sample.config.UserRole;
+import com.spring.jwt.sample.filter.JwtFilter;
 import com.spring.jwt.sample.model.Member;
 import com.spring.jwt.sample.model.Salt;
 import com.spring.jwt.sample.repository.MemberRepository;
 import com.spring.jwt.sample.repository.SocialDataRepository;
+import com.spring.jwt.sample.util.JwtUtil;
 import com.spring.jwt.sample.util.RedisUtil;
 import com.spring.jwt.sample.util.SaltUtil;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.security.Keys;
 import javassist.NotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.nio.charset.StandardCharsets;
+import java.security.Key;
 import java.util.UUID;
 
 @Service
@@ -34,13 +41,29 @@ public class JwtAuthService {
     @Autowired
     private SocialDataRepository socialDataRepository;
 
+    @Autowired
+    private JwtUtil jwtUtil;
+
     @Transactional
     public void signUpUser(Member member) {
         String password = member.getPassword();
         String salt = saltUtil.genSalt();
         member.setSalt(new Salt(salt));
         member.setPassword(saltUtil.encodePassword(salt,password));
+        System.out.println(member.getPassword());
+        String token = jwtUtil.generateToken(member);
+        Claims temp = Jwts.parserBuilder()
+                .setSigningKey(getSigningKey("testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest"))
+                .build()
+                .parseClaimsJws(token)
+                .getBody();
+        System.out.println(temp.get("username"));
         memberRepository.save(member);
+    }
+
+    private Key getSigningKey(String secretKey) {
+        byte[] keyBytes = secretKey.getBytes(StandardCharsets.UTF_8);
+        return Keys.hmacShaKeyFor(keyBytes);
     }
 
 //    @Transactional

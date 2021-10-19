@@ -57,8 +57,8 @@ public class AuthController {
 														HttpServletResponse res) {
 		try {
 			final Member member = authService.loginUser(user.getUsername(), user.getPassword());
-			final String token = jwtUtil.generateToken(user.getUsername());
-			final String refreshJwt = jwtUtil.extractUsername(token);
+			final String token = jwtUtil.generateToken(member);
+			final String refreshJwt = jwtUtil.generateRefreshToken(member);
 			Cookie accessToken = cookieUtil.createCookie(JwtUtil.ACCESS_TOKEN_NAME, token);
 			Cookie refreshToken = cookieUtil.createCookie(JwtUtil.REFRESH_TOKEN_NAME, refreshJwt);
 //			redisUtil.setDataExpire(refreshJwt, member.getUsername(), JwtUtil.REFRESH_TOKEN_VALIDATION_SECOND);

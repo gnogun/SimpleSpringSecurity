@@ -17,6 +17,8 @@ import org.springframework.util.StringUtils;
 
 import com.spring.jwt.sample.common.AuthEnum;
 
+//jwt로 인해 사용안함.
+@Deprecated
 public class CustomSecurityRememberMeService extends TokenBasedRememberMeServices {
 
 	@Value("${session.cookie.domain:localhost}")

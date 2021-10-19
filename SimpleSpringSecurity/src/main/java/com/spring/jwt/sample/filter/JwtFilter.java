@@ -33,8 +33,8 @@ public class JwtFilter  extends OncePerRequestFilter {
     @Autowired
     private CookieUtil cookieUtil;
 
-    @Autowired
-    private RedisUtil redisUtil;
+//    @Autowired
+//    private RedisUtil redisUtil;
 
     @Override
     protected void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, FilterChain filterChain) throws ServletException, IOException {
@@ -49,7 +49,7 @@ public class JwtFilter  extends OncePerRequestFilter {
         try{
             if(jwtToken != null){
                 jwt = jwtToken.getValue();
-                username = jwtUtil.extractUsername(jwt);
+                username = jwtUtil.getUsername(jwt);
             }
             if(username!=null){
                 UserDetails userDetails = userDetailsService.loadUserByUsername(username);
@@ -71,9 +71,10 @@ public class JwtFilter  extends OncePerRequestFilter {
 
         try{
             if(refreshJwt != null){
-                refreshUname = redisUtil.getData(refreshJwt);
+                refreshUname = jwtUtil.getUsername(refreshJwt);
+//                refreshUname = redisUtil.getData(refreshJwt);
 
-                if(refreshUname.equals(jwtUtil.extractUsername(refreshJwt))){
+//                if(refreshUname.equals(jwtUtil.getUsername(refreshJwt))){
                     UserDetails userDetails = userDetailsService.loadUserByUsername(refreshUname);
                     UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(userDetails,null,userDetails.getAuthorities());
                     usernamePasswordAuthenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(httpServletRequest));
@@ -81,14 +82,14 @@ public class JwtFilter  extends OncePerRequestFilter {
 
                     Member member = new Member();
                     member.setUsername(refreshUname);
-                    String newToken =jwtUtil.extractUsername(member.getUsername());
+                    String newToken =jwtUtil.generateToken(member);
 
                     Cookie newAccessToken = cookieUtil.createCookie(JwtUtil.ACCESS_TOKEN_NAME,newToken);
                     httpServletResponse.addCookie(newAccessToken);
-                }
+//                }
             }
         }catch(ExpiredJwtException e){
-
+            e.printStackTrace();
         }
 
         filterChain.doFilter(httpServletRequest,httpServletResponse);

@@ -39,7 +39,7 @@ public class CustomSecurityService implements UserDetailsService {
 		}
 		
 		
-
+		//password의 경우 이미 salt 값이 섞여 plain으로 auth를 저장한다.
 		User user = new User(username,"{noop}"+ member.getPassword(),  authorities);
 
 		return user;
