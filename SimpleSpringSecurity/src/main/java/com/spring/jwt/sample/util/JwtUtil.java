@@ -58,6 +58,9 @@ public class JwtUtil {
     public String generateRefreshToken(Member member) {
         return doGenerateToken(member.getUsername(), REFRESH_TOKEN_VALIDATION_SECOND);
     }
+    public String generateRefreshToken(String userName) {
+        return doGenerateToken(userName, REFRESH_TOKEN_VALIDATION_SECOND);
+    }
 
     public String doGenerateToken(String username, long expireTime) {
 
@@ -78,6 +81,12 @@ public class JwtUtil {
         final String username = getUsername(token);
 
         return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
+    }
+
+    public Boolean  validateToken(String token) {
+        final String username = getUsername(token);
+        return  extractAllClaims(token).get(username) != null;
+
     }
 
 

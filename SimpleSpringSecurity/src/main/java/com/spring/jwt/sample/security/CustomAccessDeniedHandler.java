@@ -1,5 +1,6 @@
-package com.spring.jwt.sample.config;
+package com.spring.jwt.sample.security;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.spring.jwt.sample.config.UserRole;
 import com.spring.jwt.sample.model.Response;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.access.AccessDeniedException;
@@ -33,7 +34,7 @@ public class CustomAccessDeniedHandler implements AccessDeniedHandler {
         User member = (User) authentication.getPrincipal();
         Collection<GrantedAuthority> authorities = member.getAuthorities();
 
-        if(hasRole(authorities,UserRole.ROLE_NOT_PERMITTED.name())){
+        if(hasRole(authorities, UserRole.ROLE_NOT_PERMITTED.name())){
             response.setMessage("사용자 인증메일을 받지 않았습니다.");
         }
 

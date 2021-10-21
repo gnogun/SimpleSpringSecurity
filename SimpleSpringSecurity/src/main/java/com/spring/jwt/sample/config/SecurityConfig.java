@@ -1,6 +1,8 @@
 package com.spring.jwt.sample.config;
 
 import com.spring.jwt.sample.filter.JwtFilter;
+import com.spring.jwt.sample.security.CustomAccessDeniedHandler;
+import com.spring.jwt.sample.security.CustomAuthenticationEntryPoint;
 import com.spring.jwt.sample.service.CustomSecurityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

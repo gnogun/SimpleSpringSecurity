@@ -29,6 +29,8 @@ public class JwtAuthService {
     @Autowired
     private MemberRepository memberRepository;
 
+
+
 //    @Autowired
 //    private EmailService emailService;
 

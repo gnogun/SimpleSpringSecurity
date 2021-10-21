@@ -1,4 +1,4 @@
-package com.spring.jwt.sample.config;
+package com.spring.jwt.sample.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.spring.jwt.sample.model.Response;
