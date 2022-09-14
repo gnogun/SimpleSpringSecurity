@@ -42,6 +42,14 @@
           <option name="url" value="http://10.106.44.249:8000/greencar-web/greenzone-api-server.git" />
           <option name="userName" value="" />
         </UrlAndUserName>
+        <UrlAndUserName>
+          <option name="url" value="https://git-codecommit.ap-northeast-2.amazonaws.com/v1/repos/gng-fw" />
+          <option name="userName" value="" />
+        </UrlAndUserName>
+        <UrlAndUserName>
+          <option name="url" value="http://git-codecommit.ap-northeast-2.amazonaws.com" />
+          <option name="userName" value="gn-dev-codecommit-gng-fw-at-355695659071" />
+        </UrlAndUserName>
       </list>
     </option>
     <option name="cloneParentDir" value="C:\Users\G00232\IdeaProjects" />
