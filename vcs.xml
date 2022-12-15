@@ -48,7 +48,7 @@
         </UrlAndUserName>
         <UrlAndUserName>
           <option name="url" value="http://git-codecommit.ap-northeast-2.amazonaws.com" />
-          <option name="userName" value="gn-dev-codecommit-ims-at-355695659071" />
+          <option name="userName" value="gn-dev-codecommit-gma-at-355695659071" />
         </UrlAndUserName>
         <UrlAndUserName>
           <option name="url" value="https://git-codecommit.ap-northeast-2.amazonaws.com/v1/repos/interface-in" />
@@ -68,6 +68,10 @@
         </UrlAndUserName>
         <UrlAndUserName>
           <option name="url" value="https://git-codecommit.ap-northeast-2.amazonaws.com/v1/repos/ims-api" />
+          <option name="userName" value="" />
+        </UrlAndUserName>
+        <UrlAndUserName>
+          <option name="url" value="https://git-codecommit.ap-northeast-2.amazonaws.com/v1/repos/gma-api" />
           <option name="userName" value="" />
         </UrlAndUserName>
       </list>
