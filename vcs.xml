@@ -110,6 +110,10 @@
           <option name="url" value="git@bitbucket.org:greencar-platform/ims-api.git" />
           <option name="userName" value="" />
         </UrlAndUserName>
+        <UrlAndUserName>
+          <option name="url" value="git@bitbucket.org:greencar-platform/biz-core-ims.git" />
+          <option name="userName" value="" />
+        </UrlAndUserName>
       </list>
     </option>
     <option name="cloneParentDir" value="C:\Users\G00232\IdeaProjects" />
